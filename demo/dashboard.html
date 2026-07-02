@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IELTS Master Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#020617",
+                        "on-primary-container": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#e2e8f0",
+                        "background": "#f8fafc",
+                        "on-primary-fixed": "#450a0a",
+                        "on-error-container": "#7f1d1d",
+                        "surface": "#ffffff",
+                        "surface-dim": "#cbd5e1",
+                        "tertiary-container": "#1d4ed8",
+                        "surface-container-low": "#f1f5f9",
+                        "on-surface-variant": "#334155",
+                        "outline-variant": "#cbd5e1",
+                        "on-primary-fixed-variant": "#b91c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#dc2626",
+                        "primary": "#dc2626",
+                        "secondary-fixed": "#dbeafe",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#020617",
+                        "surface-container": "#e2e8f0",
+                        "on-surface": "#0f172a",
+                        "on-tertiary-fixed": "#0f172a",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#fee2e2",
+                        "surface-variant": "#e2e8f0",
+                        "tertiary": "#2563eb",
+                        "secondary-fixed-dim": "#bfdbfe",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#1d4ed8",
+                        "surface-bright": "#ffffff",
+                        "outline": "#64748b",
+                        "secondary-container": "#020617",
+                        "inverse-primary": "#93c5fd",
+                        "error-container": "#fee2e2",
+                        "surface-tint": "#2563eb",
+                        "surface-container-highest": "#e2e8f0",
+                        "primary-fixed-dim": "#fecaca",
+                        "on-secondary-fixed-variant": "#1e3a8a",
+                        "tertiary-fixed": "#dbeafe",
+                        "surface-container-high": "#e5e7eb",
+                        "on-tertiary-fixed-variant": "#1d4ed8",
+                        "on-secondary-container": "#ffffff",
+                        "tertiary-fixed-dim": "#bfdbfe",
+                        "on-tertiary-container": "#ffffff",
+                        "primary-container": "#2563eb",
+                        "on-background": "#0f172a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "section-gap": "48px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "passage-text": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "mono-timer": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "passage-text": ["18px", { "lineHeight": "30px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "mono-timer": ["20px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col h-screen fixed left-0 top-0 overflow-y-auto bg-surface-container-low border-r border-outline-variant docked left w-64 z-20">
+<div class="p-gutter">
+<h1 class="font-headline-md text-headline-md text-on-surface">IELTS Master</h1>
+</div>
+<div class="flex-1 px-4 py-2 space-y-1">
+<a class="flex items-center px-4 py-3 bg-primary text-on-primary rounded-none border-l-4 border-on-primary-fixed focus:ring-2 focus:ring-primary outline-none" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps">Overview</span>
+</a>
+<a class="flex items-center px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all rounded-none border-l-4 border-transparent focus:ring-2 focus:ring-primary outline-none" href="#">
+<span class="material-symbols-outlined mr-3">menu_book</span>
+<span class="font-label-caps text-label-caps">Reading</span>
+</a>
+<a class="flex items-center px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all rounded-none border-l-4 border-transparent focus:ring-2 focus:ring-primary outline-none" href="#">
+<span class="material-symbols-outlined mr-3">headset</span>
+<span class="font-label-caps text-label-caps">Listening</span>
+</a>
+<a class="flex items-center px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all rounded-none border-l-4 border-transparent focus:ring-2 focus:ring-primary outline-none" href="#">
+<span class="material-symbols-outlined mr-3">edit_note</span>
+<span class="font-label-caps text-label-caps">Writing</span>
+</a>
+<a class="flex items-center px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all rounded-none border-l-4 border-transparent focus:ring-2 focus:ring-primary outline-none" href="#">
+<span class="material-symbols-outlined mr-3">record_voice_over</span>
+<span class="font-label-caps text-label-caps">Speaking</span>
+</a>
+</div>
+<div class="p-gutter mt-auto">
+<div class="flex items-center mb-6">
+<img alt="Student Portrait" class="w-10 h-10 rounded-full bg-surface-variant object-cover mr-3" data-alt="A professional headshot of a student in a minimalist studio setting, well-lit with soft natural light. High quality, sharp focus, clean background suitable for an educational profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9N8G_jAhXjDIIYRpI7yJvERXzX51ofsBmM5O87cKZWeLi43AoqSNsxSkb5y7MYf83ND9Bvx8fUIqjv4rTBhlQWsiT_zrSbhXqSn915vcgriy8IdwGRu71ILUT_uLdGrIvK_W32itGy1Z9ZgsU8GOKOrjLKWNjMsJv3vnCTKrVs7nt02JaS4G3m_S1eA0r_f6gEYSx9UXaekNnhjbh831xU3OVnnP4BJupr9ZcnmhJ2ZA4fz_tcL0J"/>
+<div>
+<div class="font-label-caps text-label-caps font-bold">Exam Candidate</div>
+<div class="font-body-md text-sm text-on-surface-variant">Band Target: 7.5</div>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded hover:bg-on-primary-fixed-variant transition-colors font-label-caps text-label-caps focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                Start Mock Test
+            </button>
+</div>
+<div class="px-4 py-4 border-t border-outline-variant space-y-1">
+<a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+<a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 p-gutter min-h-screen bg-background">
+<!-- Mobile Top Nav (Visible only on small screens) -->
+<header class="md:hidden flex justify-between items-center mb-gutter border-b border-outline-variant pb-4">
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">IELTS Master</h1>
+<button class="text-on-surface p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<div class="max-w-container-max mx-auto space-y-section-gap">
+<!-- Dashboard Header -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Dashboard</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Welcome back. Your official examination preparation continues.</p>
+</div>
+<!-- Mock Test Alert -->
+<div class="bg-surface-container-highest border border-outline-variant rounded p-4 flex items-center gap-4 w-full md:w-auto">
+<span class="material-symbols-outlined text-primary text-3xl">event_available</span>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">Upcoming Mock Test</div>
+<div class="font-mono-timer text-mono-timer text-on-surface" id="countdown">48:00:00</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Current Band Score Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-8 flex flex-col justify-center items-center relative overflow-hidden">
+<div class="absolute top-4 left-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Current Band Score</span>
+</div>
+<div class="mt-6 mb-2">
+<span class="font-display-lg text-6xl text-primary font-bold">7.0</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary h-full" style="width: 85%;"></div>
+</div>
+<div class="flex justify-between w-full mt-2 font-label-caps text-label-caps text-on-surface-variant">
+<span>Current</span>
+<span>Target: 7.5</span>
+</div>
+</div>
+<!-- Weekly Progress Chart -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-6 md:col-span-2">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4">Weekly Practice Hours</h3>
+<div class="h-48 w-full relative">
+<canvas id="progressChart"></canvas>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Continue Learning -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Continue Learning</h3>
+<span class="px-2 py-1 bg-surface-container-high rounded-full font-label-caps text-label-caps text-on-surface-variant">Reading</span>
+</div>
+<div class="space-y-4">
+<div>
+<div class="font-body-md text-body-md font-semibold text-on-surface">Academic Reading Practice Test 14</div>
+<div class="font-body-md text-sm text-on-surface-variant mt-1">Section 2: The History of the Tortoise</div>
+</div>
+<div class="flex justify-between items-center text-sm font-label-caps text-label-caps text-on-surface-variant">
+<span>14/40 Questions</span>
+<span>25 Mins Remaining</span>
+</div>
+<button class="w-full mt-4 bg-primary text-on-primary py-2 px-4 rounded hover:bg-on-primary-fixed-variant transition-colors font-label-caps text-label-caps flex justify-center items-center">
+                            Resume Test <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Practice Recommendations -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-6">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">Recommendations</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-4 p-3 hover:bg-surface-container-low rounded transition-colors cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="w-10 h-10 rounded bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">edit_note</span>
+</div>
+<div>
+<div class="font-body-md text-body-md font-semibold text-on-surface">Task 2 Writing Workshop</div>
+<div class="font-body-md text-sm text-on-surface-variant mt-1">Focus on complex sentence structures to improve from Band 6.5.</div>
+</div>
+</li>
+<li class="flex items-start gap-4 p-3 hover:bg-surface-container-low rounded transition-colors cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="w-10 h-10 rounded bg-secondary-fixed flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined">record_voice_over</span>
+</div>
+<div>
+<div class="font-body-md text-body-md font-semibold text-on-surface">Speaking Part 3 Tactics</div>
+<div class="font-body-md text-sm text-on-surface-variant mt-1">Review strategies for answering abstract questions.</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-12 px-gutter flex flex-col md:flex-row justify-between items-center gap-4 border-t border-outline-variant bg-surface-container-highest mt-section-gap">
+<div class="font-label-caps text-label-caps font-bold text-on-surface-variant">IELTS Master</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm">&copy; 2024 Academic IELTS Prep. All rights reserved. Official Examination Environment.</div>
+<div class="flex gap-4">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Test Regulations</a>
+</div>
+</footer>
+</div>
+</main>
+<script>
+        // Chart.js implementation for the minimalist progress chart
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+        gradient.addColorStop(0, 'rgba(220, 38, 38, 0.18)'); // Primary color with opacity
+        gradient.addColorStop(1, 'rgba(37, 99, 235, 0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Hours',
+                    data: [1.5, 2, 1, 3, 2.5, 4, 3.5],
+                    borderColor: '#dc2626', // Primary color
+                    backgroundColor: gradient,
+                    borderWidth: 2,
+                    pointBackgroundColor: '#ffffff',
+                    pointBorderColor: '#dc2626',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    fill: true,
+                    tension: 0.3 // Smooth curves
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#1a1b23',
+                        titleFont: { family: 'Inter', size: 12 },
+                        bodyFont: { family: 'Inter', size: 14 },
+                        padding: 10,
+                        displayColors: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#cbd5e1', // outline-variant/surface-variant equivalent
+                            drawBorder: false,
+                        },
+                        ticks: {
+                            font: { family: 'Inter', size: 10 },
+                            color: '#64748b', // outline color
+                            stepSize: 1
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            font: { family: 'Inter', size: 12 },
+                            color: '#64748b'
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+            }
+        });
+
+        // Simple Countdown Script
+        function updateCountdown() {
+            const countdownEl = document.getElementById('countdown');
+            let [hours, minutes, seconds] = countdownEl.innerText.split(':').map(Number);
+            
+            seconds--;
+            if(seconds < 0) { seconds = 59; minutes--; }
+            if(minutes < 0) { minutes = 59; hours--; }
+            if(hours < 0) { hours = 0; minutes = 0; seconds = 0; }
+            
+            countdownEl.innerText = 
+                String(hours).padStart(2, '0') + ':' + 
+                String(minutes).padStart(2, '0') + ':' + 
+                String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+    </script>
+<script src="navigation.js"></script></body></html>
