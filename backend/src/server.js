@@ -1,43 +1,34 @@
-import "dotenv/config";
-import cookieParser from "cookie-parser";
-import cors from "cors";
 import express from "express";
-import mongoose from "mongoose";
+import dotenv from "dotenv";
 import connectDB from "./libs/db.js";
-import authRoutes from "./routes/authRoute.js";
+import authRoute from "./routes/authRoute.js";
+import cookieParser from "cookie-parser";
+import userRoute from "./routes/userRoute.js";
+import { protectedRoute } from "./middlewares/authMiddleware.js";
+
+dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.use(cors());
+const PORT = process.env.PORT || 5001;
+
+// middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use("/api/auth", authRoutes);
 
-app.get("/", (_req, res) => {
-  res.json({ message: "Backend is running" });
-});
+//public routes
+app.use("/api/auth", authRoute);
 
-app.get("/health", (_req, res) => {
-  const databaseConnected = mongoose.connection.readyState === 1;
+//private routes
+app.use(protectedRoute); // middleware xác thực JWT
+app.use("/api/users", userRoute);
 
-  res.status(databaseConnected ? 200 : 503).json({
-    server: "running",
-    database: databaseConnected ? "connected" : "disconnected",
-  });
-});
-
-async function startServer() {
-  try {
-    await connectDB();
-
-    app.listen(port, () => {
-      console.log(`Server is running at http://localhost:${port}`);
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
     });
-  } catch (error) {
-    console.error(`Failed to start server: ${error.message}`);
-    process.exit(1);
-  }
-}
-
-startServer();
+  })
+  .catch((error) => {
+    console.error("Error starting server:", error);
+  });

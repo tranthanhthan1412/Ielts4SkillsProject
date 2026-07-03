@@ -20,5 +20,7 @@ const sessionSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+// tu dong xoa session khi het han
+sessionSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 }); // tu dong xoa session khi het han
 
 export default mongoose.model("Session", sessionSchema);
