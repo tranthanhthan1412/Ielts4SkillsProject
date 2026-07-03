@@ -1,7 +1,13 @@
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
+import bcrypt from "bcrypt";
+import crypto from "crypto";
+import jwt from "jsonwebtoken";
+import Session from "../models/Session.js";
+import User from "../models/User.js";
 
-async function signUp(req, res) {
+const ACCESS_TOKEN_TTL = "30m";
+const REFRESH_TOKEN_TTL = 14 * 24 * 60 * 60 * 1000; // 14 days theo milliseconds
+
+export const signUp = async (req, res) => {
   try {
     const { username, password, email, firstName, lastName } = req.body;
 
@@ -37,9 +43,90 @@ async function signUp(req, res) {
       },
     });
   } catch (error) {
-    console.error("Sign up error:", error);
-    return res.status(500).json({ message: "Internal server error" });
+    console.error("Lỗi khi gọi signUp:", error);
+    return res.status(500).json({ message: "Lỗi máy chủ" });
   }
-}
+};
 
-module.exports = { signUp };
+export const signIn = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res
+        .status(400)
+        .json({ message: "Thiếu tên người dùng hoặc mật khẩu" });
+    }
+
+    const user = await User.findOne({ username }).select("+password");
+
+    if (!user) {
+      return res
+        .status(401)
+        .json({ message: "Tên người dùng hoặc mật khẩu không đúng" });
+    }
+
+    const passwordCorrect = await bcrypt.compare(password, user.password);
+
+    if (!passwordCorrect) {
+      return res
+        .status(401)
+        .json({ message: "Tên người dùng hoặc mật khẩu không đúng" });
+    }
+    // Tạo access token
+    const accessToken = jwt.sign(
+      { userId: user._id },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: ACCESS_TOKEN_TTL },
+    );
+    // Tạo refresh token và lưu vào cơ sở dữ liệu
+    const refreshToken = crypto.randomBytes(64).toString("hex");
+
+    await Session.create({
+      userId: user._id,
+      refreshToken,
+      expiresAt: new Date(Date.now() + REFRESH_TOKEN_TTL),
+    });
+
+    const isProduction = process.env.NODE_ENV === "production";
+    // Set cookie cho refresh token
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true, // cookie chỉ có thể được truy cập thông qua HTTP(S), không thể truy cập bằng JavaScript
+      secure: isProduction, // cookie chỉ được gửi qua HTTPS trong môi trường production
+      sameSite: isProduction ? "none" : "lax", // cookie sẽ được gửi trong các yêu cầu cùng nguồn (same-site) hoặc trong các yêu cầu từ các nguồn khác (cross-site) tùy thuộc vào môi trường
+      maxAge: REFRESH_TOKEN_TTL,
+    });
+    // Trả về access token và thông tin người dùng
+    return res
+      .status(200)
+      .json({
+        message: `User ${user.displayName} đã đăng nhập thành công`,
+        accessToken,
+      });
+  } catch (error) {
+    console.error("Lỗi khi gọi signIn:", error);
+    return res.status(500).json({ message: "Lỗi máy chủ" });
+  }
+};
+
+export const signOut = async (req, res) => {
+  try {
+    const refreshToken = req.cookies?.refreshToken;
+
+    if (refreshToken) {
+      await Session.deleteOne({ refreshToken });
+    }
+
+    const isProduction = process.env.NODE_ENV === "production";
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax",
+    });
+
+    return res.status(200).json({ message: "Đăng xuất thành công" });
+  } catch (error) {
+    console.error("Lỗi khi gọi signOut:", error);
+    return res.status(500).json({ message: "Lỗi máy chủ" });
+  }
+};
