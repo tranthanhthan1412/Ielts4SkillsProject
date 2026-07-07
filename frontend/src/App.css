@@ -96,7 +96,6 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .story-content h1 {
@@ -109,7 +108,6 @@
 
 .story-content h1 em {
   color: #91b7ff;
-  font-family: "Playfair Display", Georgia, serif;
   font-weight: 600;
   letter-spacing: -0.025em;
 }
@@ -232,7 +230,6 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 .form-card h2 {
@@ -777,7 +774,6 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.13em;
-  text-transform: uppercase;
 }
 
 .sidebar-nav button,
@@ -923,7 +919,6 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .dashboard-topbar > div strong {
@@ -1006,7 +1001,6 @@
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.09em;
-  text-transform: uppercase;
 }
 
 .exam-countdown strong {
@@ -1129,7 +1123,6 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.09em;
-  text-transform: uppercase;
 }
 
 .panel-heading h2,
@@ -1352,7 +1345,6 @@
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
 .dashboard-v2 .skill-card h3 {
@@ -1526,7 +1518,6 @@
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .module-card h2 {
@@ -1608,7 +1599,6 @@
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .exam-topbar > div strong {

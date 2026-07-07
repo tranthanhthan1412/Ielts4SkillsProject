@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router'
 import { getCurrentUser, signIn, signUp } from '../../services/authService'
 import { TOKEN_KEY } from '../../services/api'
 import type { User } from '../../services/api'
+import './AuthPage.css'
 
 type AuthMode = 'signin' | 'signup'
 
@@ -99,7 +100,7 @@ function AuthPage({ onAuthenticated }: AuthPageProps) {
           <h1>
             Luyện tập có mục tiêu.
             <br />
-            <em>Tiến bộ có lộ trình.</em>
+            Tiến bộ có lộ trình.
           </h1>
           <p>
             Một không gian luyện IELTS tập trung, có bài tập sát định dạng thi
