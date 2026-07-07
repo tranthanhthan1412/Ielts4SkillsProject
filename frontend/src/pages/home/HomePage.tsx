@@ -15,7 +15,7 @@ import {
   X,
 } from 'lucide-react'
 import { Link } from 'react-router'
-import type { User } from '../lib/api'
+import type { User } from '../../services/api'
 import './HomePage.css'
 
 type HomePageProps = {

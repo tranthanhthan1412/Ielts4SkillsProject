@@ -2,8 +2,9 @@ import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { ArrowLeft, ArrowRight, Check, Eye, EyeOff, Sparkles } from 'lucide-react'
 import { Link, useNavigate } from 'react-router'
-import { apiRequest, TOKEN_KEY } from '../lib/api'
-import type { User } from '../lib/api'
+import { getCurrentUser, signIn, signUp } from '../../services/authService'
+import { TOKEN_KEY } from '../../services/api'
+import type { User } from '../../services/api'
 
 type AuthMode = 'signin' | 'signup'
 
@@ -46,15 +47,12 @@ function AuthPage({ onAuthenticated }: AuthPageProps) {
           throw new Error('Mật khẩu xác nhận chưa trùng khớp.')
         }
 
-        await apiRequest('/auth/signup', {
-          method: 'POST',
-          body: JSON.stringify({
-            firstName: form.get('firstName'),
-            lastName: form.get('lastName'),
-            username: form.get('username'),
-            email: form.get('email'),
-            password,
-          }),
+        await signUp({
+          email: String(form.get('email') || ''),
+          firstName: String(form.get('firstName') || ''),
+          lastName: String(form.get('lastName') || ''),
+          password,
+          username: String(form.get('username') || ''),
         })
 
         formElement.reset()
@@ -63,23 +61,13 @@ function AuthPage({ onAuthenticated }: AuthPageProps) {
         return
       }
 
-      const { accessToken } = await apiRequest<{ accessToken: string }>(
-        '/auth/signin',
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            username: form.get('username'),
-            password,
-          }),
-        },
-      )
+      const { accessToken } = await signIn({
+        password,
+        username: String(form.get('username') || ''),
+      })
 
       localStorage.setItem(TOKEN_KEY, accessToken)
-      const { user } = await apiRequest<{ user: User }>(
-        '/users/me',
-        {},
-        accessToken,
-      )
+      const user = await getCurrentUser(accessToken)
       onAuthenticated(user)
       navigate('/dashboard')
     } catch (caughtError) {

@@ -20,6 +20,7 @@ import {
   Target,
   X,
 } from 'lucide-react'
+import { Link } from 'react-router'
 
 type DashboardUser = {
   username: string
@@ -42,11 +43,11 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
   const todayLabel = today.charAt(0).toUpperCase() + today.slice(1)
 
   const navigation = [
-    { label: 'Tổng quan', icon: LayoutDashboard, active: true },
-    { label: 'Reading', icon: BookOpen },
-    { label: 'Listening', icon: Headphones },
-    { label: 'Writing', icon: PenLine },
-    { label: 'Speaking', icon: Mic2 },
+    { label: 'Tổng quan', icon: LayoutDashboard, active: true, path: '/dashboard' },
+    { label: 'Reading', icon: BookOpen, path: '/reading' },
+    { label: 'Listening', icon: Headphones, path: '/listening' },
+    { label: 'Writing', icon: PenLine, path: '/writing' },
+    { label: 'Speaking', icon: Mic2, path: '/speaking' },
   ]
 
   const skillCards = [
@@ -55,6 +56,7 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
       subtitle: 'Đọc hiểu học thuật',
       description: 'Rèn tốc độ đọc, kỹ năng tìm ý và xử lý dạng câu hỏi.',
       icon: BookOpen,
+      path: '/reading',
       progress: 68,
       completed: '12 bài đã hoàn thành',
     },
@@ -63,6 +65,7 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
       subtitle: 'Nghe hiểu',
       description: 'Luyện nghe theo 4 sections với nhiều giọng tiếng Anh.',
       icon: Headphones,
+      path: '/listening',
       progress: 52,
       completed: '8 bài đã hoàn thành',
     },
@@ -71,6 +74,7 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
       subtitle: 'Viết học thuật',
       description: 'Thực hành Task 1, Task 2 theo tiêu chí chấm thi IELTS.',
       icon: PenLine,
+      path: '/writing',
       progress: 35,
       completed: '5 bài đã hoàn thành',
     },
@@ -79,6 +83,7 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
       subtitle: 'Phản xạ nói',
       description: 'Luyện trả lời mạch lạc cho Part 1, Part 2 và Part 3.',
       icon: Mic2,
+      path: '/speaking',
       progress: 44,
       completed: '6 bài đã hoàn thành',
     },
@@ -103,12 +108,12 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
     <main className="dashboard dashboard-v2">
       <aside className={`dashboard-sidebar ${isMenuOpen ? 'open' : ''}`}>
         <div className="sidebar-heading">
-          <a className="brand dashboard-brand" href="/" aria-label="IELTS Master">
+          <Link className="brand dashboard-brand" to="/" aria-label="IELTS Master">
             <span className="brand-mark">I</span>
             <span>
               IELTS <strong>MASTER</strong>
             </span>
-          </a>
+          </Link>
           <button
             className="sidebar-close"
             type="button"
@@ -121,24 +126,17 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
 
         <nav className="sidebar-nav" aria-label="Điều hướng chính">
           <span className="sidebar-label">Học tập</span>
-          {navigation.map(({ label, icon: Icon, active }) => (
-            <button
+          {navigation.map(({ label, icon: Icon, active, path }) => (
+            <Link
               className={active ? 'active' : ''}
-              type="button"
               key={label}
-              onClick={() => {
-                setIsMenuOpen(false)
-                if (!active) {
-                  document
-                    .getElementById('practice-skills')
-                    ?.scrollIntoView({ behavior: 'smooth' })
-                }
-              }}
+              onClick={() => setIsMenuOpen(false)}
+              to={path}
             >
               <Icon size={19} aria-hidden="true" />
               <span>{label}</span>
               {!active && <ChevronRight size={15} aria-hidden="true" />}
-            </button>
+            </Link>
           ))}
         </nav>
 
@@ -199,14 +197,13 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
             <span>Không gian học tập</span>
             <strong>IELTS Academic</strong>
           </div>
-          <button
+          <Link
             className="start-test-button"
-            type="button"
-            onClick={() => showNotice('Bài thi thử đang được chuẩn bị.')}
+            to="/reading"
           >
             <ClipboardCheck size={18} />
             <span>Bắt đầu thi thử</span>
-          </button>
+          </Link>
         </header>
 
         <div className="dashboard-content dashboard-v2-content">
@@ -311,15 +308,10 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
               <div className="test-progress">
                 <span style={{ width: '35%' }} />
               </div>
-              <button
-                type="button"
-                onClick={() =>
-                  showNotice('Bài Reading sẽ được nối ở bước tiếp theo.')
-                }
-              >
+              <Link to="/reading/academic-reading-14">
                 Tiếp tục làm bài
                 <ArrowRight size={18} />
-              </button>
+              </Link>
             </article>
           </section>
 
@@ -333,7 +325,15 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
             </div>
             <div className="skill-grid">
               {skillCards.map(
-                ({ title, subtitle, description, icon: Icon, progress, completed }) => (
+                ({
+                  completed,
+                  description,
+                  icon: Icon,
+                  path,
+                  progress,
+                  subtitle,
+                  title,
+                }) => (
                   <article className="skill-card" key={title}>
                     <div className="skill-card-top">
                       <span className="skill-icon">
@@ -349,15 +349,9 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
                     </div>
                     <div className="skill-card-footer">
                       <small>{completed}</small>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          showNotice(`Trang ${title} sẽ được xây dựng tiếp theo.`)
-                        }
-                        aria-label={`Mở kỹ năng ${title}`}
-                      >
+                      <Link to={path} aria-label={`Mở kỹ năng ${title}`}>
                         <ChevronRight size={18} />
-                      </button>
+                      </Link>
                     </div>
                   </article>
                 ),
@@ -384,15 +378,10 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
                     7.0.
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() =>
-                    showNotice('Bài Writing sẽ được nối sau Dashboard.')
-                  }
-                >
+                <Link to="/writing/task-2-opinion-essay">
                   Xem bài
                   <ChevronRight size={17} />
-                </button>
+                </Link>
               </article>
               <article>
                 <span className="recommendation-icon">
@@ -404,15 +393,10 @@ function Dashboard({ user, onSignOut }: DashboardProps) {
                     Luyện cách đưa lý do và ví dụ cho các câu hỏi trừu tượng.
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() =>
-                    showNotice('Bài Speaking sẽ được nối sau Dashboard.')
-                  }
-                >
+                <Link to="/speaking/part-2-place">
                   Xem bài
                   <ChevronRight size={17} />
-                </button>
+                </Link>
               </article>
             </div>
           </section>
