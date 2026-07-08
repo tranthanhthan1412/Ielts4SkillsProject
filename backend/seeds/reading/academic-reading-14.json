@@ -1,0 +1,68 @@
+{
+  "slug": "academic-reading-14",
+  "title": "Academic Reading Practice Test 14",
+  "description": "Academic passage practice with True/False/Not Given and matching headings.",
+  "durationMinutes": 60,
+  "level": "medium",
+  "status": "published",
+  "passages": [
+    {
+      "order": 1,
+      "title": "The History of Tea",
+      "content": "Tea has shaped trade, medicine, and daily life for centuries. The earliest accounts describe leaves being infused in hot water in China, where the drink was valued first for its refreshing qualities and later for its social importance. As trade routes expanded, tea moved across Asia and eventually reached Europe, where it became a symbol of taste, ritual, and commercial power.",
+      "questionGroups": [
+        {
+          "type": "true-false-not-given",
+          "instruction": "Questions 1-3. Do the following statements agree with the information given in the passage?",
+          "questions": [
+            {
+              "number": 1,
+              "text": "Tea was first described in accounts from China.",
+              "answer": "TRUE"
+            },
+            {
+              "number": 2,
+              "text": "Tea became popular in Europe before it spread across Asia.",
+              "answer": "FALSE"
+            },
+            {
+              "number": 3,
+              "text": "Tea farmers in China were required to pay a special tax.",
+              "answer": "NOT GIVEN"
+            }
+          ]
+        },
+        {
+          "type": "matching-headings",
+          "instruction": "Questions 4-5. Choose the correct heading for each part of the passage.",
+          "options": [
+            {
+              "key": "i",
+              "text": "A drink becomes part of wider culture"
+            },
+            {
+              "key": "ii",
+              "text": "Modern scientific farming methods"
+            },
+            {
+              "key": "iii",
+              "text": "Early records of tea drinking"
+            }
+          ],
+          "questions": [
+            {
+              "number": 4,
+              "paragraph": "Early accounts",
+              "answer": "iii"
+            },
+            {
+              "number": 5,
+              "paragraph": "Trade and Europe",
+              "answer": "i"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./libs/db.js";
 import authRoute from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
+import readingRoute from "./routes/readingRoute.js";
 import userRoute from "./routes/userRoute.js";
 import { protectedRoute } from "./middlewares/authMiddleware.js";
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 
 //public routes
 app.use("/api/auth", authRoute);
+app.use("/api/reading", readingRoute);
 
 //private routes
 app.use(protectedRoute); // middleware xác thực JWT
