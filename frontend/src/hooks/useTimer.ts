@@ -1,9 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { formatTime } from '../utils/formatTime'
 
-export function useTimer(initialSeconds: number, autoStart = true) {
+export function useTimer(initialSeconds: number, autoStart = true, onTimeUp?: () => void) {
   const [remainingSeconds, setRemainingSeconds] = useState(initialSeconds)
   const [isRunning, setIsRunning] = useState(autoStart)
+  const onTimeUpRef = useRef(onTimeUp)
+
+  onTimeUpRef.current = onTimeUp
 
   useEffect(() => {
     if (!isRunning || remainingSeconds <= 0) {
@@ -17,6 +20,12 @@ export function useTimer(initialSeconds: number, autoStart = true) {
     return () => window.clearInterval(interval)
   }, [isRunning, remainingSeconds])
 
+  useEffect(() => {
+    if (remainingSeconds === 0 && onTimeUpRef.current) {
+      onTimeUpRef.current()
+    }
+  }, [remainingSeconds])
+
   const reset = useCallback(() => {
     setRemainingSeconds(initialSeconds)
     setIsRunning(autoStart)
@@ -24,6 +33,7 @@ export function useTimer(initialSeconds: number, autoStart = true) {
 
   return {
     formattedTime: formatTime(remainingSeconds),
+    isExpired: remainingSeconds === 0,
     isRunning,
     pause: () => setIsRunning(false),
     remainingSeconds,

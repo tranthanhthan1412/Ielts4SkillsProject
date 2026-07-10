@@ -3,6 +3,7 @@ import {
   getReadingAttempt,
   getReadingTest,
   listReadingTests,
+  listUserAttempts,
   submitReadingAttempt,
 } from "../controllers/readingController.js";
 import { protectedRoute } from "../middlewares/authMiddleware.js";
@@ -12,6 +13,7 @@ const router = express.Router();
 router.get("/tests", listReadingTests);
 router.get("/tests/:slug", getReadingTest);
 router.post("/tests/:slug/attempts", protectedRoute, submitReadingAttempt);
+router.get("/attempts", protectedRoute, listUserAttempts);
 router.get("/attempts/:attemptId", protectedRoute, getReadingAttempt);
 
 export default router;

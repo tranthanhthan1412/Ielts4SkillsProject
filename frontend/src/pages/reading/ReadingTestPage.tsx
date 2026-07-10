@@ -1,7 +1,8 @@
 import { ArrowRight } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import QuestionNavigator from '../../components/exam/QuestionNavigator'
+import SubmitConfirmModal from '../../components/exam/SubmitConfirmModal'
 import ExamLayout from '../../layouts/ExamLayout'
 import { TOKEN_KEY } from '../../services/api'
 import {
@@ -25,7 +26,10 @@ function ReadingTestPage() {
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showModal, setShowModal] = useState(false)
   const [startedAt, setStartedAt] = useState(() => Date.now())
+  const questionRefs = useRef<Record<number, HTMLDivElement | null>>({})
+  const hasAutoSubmitted = useRef(false)
 
   useEffect(() => {
     void getReadingTest(testId)
@@ -35,6 +39,7 @@ function ReadingTestPage() {
         setCurrentQuestion(1)
         setError('')
         setStartedAt(Date.now())
+        hasAutoSubmitted.current = false
       })
       .catch((caughtError) => {
         setError(
@@ -60,8 +65,16 @@ function ReadingTestPage() {
     }))
   }
 
-  const handleSubmit = async () => {
-    if (!test) {
+  const handleSelectQuestion = (questionNumber: number) => {
+    setCurrentQuestion(questionNumber)
+    const ref = questionRefs.current[questionNumber]
+    if (ref) {
+      ref.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }
+
+  const doSubmit = useCallback(async () => {
+    if (!test || isSubmitting) {
       return
     }
 
@@ -74,6 +87,7 @@ function ReadingTestPage() {
 
     setError('')
     setIsSubmitting(true)
+    setShowModal(false)
 
     try {
       const attempt = await submitReadingAttempt(
@@ -101,25 +115,38 @@ function ReadingTestPage() {
     } finally {
       setIsSubmitting(false)
     }
+  }, [answers, isSubmitting, navigate, startedAt, test])
+
+  const handleTimeUp = useCallback(() => {
+    if (hasAutoSubmitted.current) {
+      return
+    }
+    hasAutoSubmitted.current = true
+    void doSubmit()
+  }, [doSubmit])
+
+  const handleSubmitClick = () => {
+    setShowModal(true)
   }
 
   return (
     <ExamLayout
       durationSeconds={(test?.durationMinutes ?? 60) * 60}
+      onTimeUp={handleTimeUp}
       progress={totalQuestions ? (answeredQuestions.length / totalQuestions) * 100 : 0}
       skill="Reading"
       title={test?.title ?? 'Reading Practice'}
     >
       {error && <p className="module-message error">{error}</p>}
       <div className="exam-grid">
-        <article className="exam-panel">
+        <article className="exam-panel reading-passage-panel">
           <span>Reading passage</span>
           {passages.map((passage) => (
             <section className="reading-passage" key={passage.order}>
               <h1>{passage.title}</h1>
               <div className="reading-passage-content">
-                {passage.content.split(/\n{2,}/).map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
+                {passage.content.split(/\n{2,}/).map((paragraph, idx) => (
+                  <p key={idx}>{paragraph}</p>
                 ))}
               </div>
             </section>
@@ -127,7 +154,7 @@ function ReadingTestPage() {
           {!test && !error && <p>Đang tải nội dung đề Reading...</p>}
         </article>
 
-        <aside className="exam-panel">
+        <aside className="exam-panel reading-questions-panel">
           <span>Câu {currentQuestion}</span>
           <h2>Questions</h2>
           <div className="reading-question-groups">
@@ -147,9 +174,12 @@ function ReadingTestPage() {
                         group={group}
                         key={question.number}
                         question={question}
+                        ref={(el) => {
+                          questionRefs.current[question.number] = el
+                        }}
                         value={answers[question.number] ?? ''}
                         onAnswer={updateAnswer}
-                        onSelect={setCurrentQuestion}
+                        onSelect={handleSelectQuestion}
                       />
                     ))}
                   </div>
@@ -160,20 +190,28 @@ function ReadingTestPage() {
           <QuestionNavigator
             answered={answeredQuestions}
             current={currentQuestion}
-            onSelect={setCurrentQuestion}
+            onSelect={handleSelectQuestion}
             total={totalQuestions || 1}
           />
           <button
             className="exam-submit-link"
             type="button"
             disabled={!test || isSubmitting}
-            onClick={handleSubmit}
+            onClick={handleSubmitClick}
           >
             {isSubmitting ? 'Đang nộp bài...' : 'Nộp bài Reading'}
             <ArrowRight size={17} />
           </button>
         </aside>
       </div>
+
+      <SubmitConfirmModal
+        answeredCount={answeredQuestions.length}
+        onCancel={() => setShowModal(false)}
+        onConfirm={doSubmit}
+        open={showModal}
+        totalQuestions={totalQuestions}
+      />
     </ExamLayout>
   )
 }
@@ -187,29 +225,32 @@ type QuestionItemProps = {
   value: string
 }
 
-function QuestionItem({
-  current,
-  group,
-  onAnswer,
-  onSelect,
-  question,
-  value,
-}: QuestionItemProps) {
-  return (
-    <div className={current ? 'reading-question current' : 'reading-question'}>
-      <button type="button" onClick={() => onSelect(question.number)}>
-        <strong>{question.number}</strong>
-        <span>{question.text || question.paragraph || `Question ${question.number}`}</span>
-      </button>
-      <AnswerInput
-        group={group}
-        question={question}
-        value={value}
-        onChange={(nextValue) => onAnswer(question.number, nextValue)}
-      />
-    </div>
-  )
-}
+import { forwardRef } from 'react'
+
+const QuestionItem = forwardRef<HTMLDivElement, QuestionItemProps>(
+  function QuestionItem(
+    { current, group, onAnswer, onSelect, question, value },
+    ref,
+  ) {
+    return (
+      <div
+        className={current ? 'reading-question current' : 'reading-question'}
+        ref={ref}
+      >
+        <button type="button" onClick={() => onSelect(question.number)}>
+          <strong>{question.number}</strong>
+          <span>{question.text || question.paragraph || `Question ${question.number}`}</span>
+        </button>
+        <AnswerInput
+          group={group}
+          question={question}
+          value={value}
+          onChange={(nextValue) => onAnswer(question.number, nextValue)}
+        />
+      </div>
+    )
+  },
+)
 
 type AnswerInputProps = {
   group: ReadingQuestionGroup

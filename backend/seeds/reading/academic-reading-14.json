@@ -1,7 +1,7 @@
 {
   "slug": "academic-reading-14",
   "title": "Academic Reading Practice Test 14",
-  "description": "Academic passage practice with True/False/Not Given and matching headings.",
+  "description": "Full-length academic reading test with three passages covering diverse topics. Includes True/False/Not Given, Matching Headings, Multiple Choice, Sentence Completion, Summary Completion, and Short Answer questions.",
   "durationMinutes": 60,
   "level": "medium",
   "status": "published",
@@ -9,56 +9,364 @@
     {
       "order": 1,
       "title": "The History of Tea",
-      "content": "Tea has shaped trade, medicine, and daily life for centuries. The earliest accounts describe leaves being infused in hot water in China, where the drink was valued first for its refreshing qualities and later for its social importance. As trade routes expanded, tea moved across Asia and eventually reached Europe, where it became a symbol of taste, ritual, and commercial power.",
+      "content": "Tea has shaped trade, medicine, and daily life for centuries. The earliest accounts describe leaves being infused in hot water in China around 2737 BC, when Emperor Shen Nung is said to have discovered the drink by accident after leaves blew into his pot of boiling water. The beverage was valued first for its medicinal qualities — ancient texts describe it as a remedy for fatigue and poor digestion — and later for its role in social rituals and philosophical practice.\n\nBy the Tang Dynasty (618–907 AD), tea drinking had become a sophisticated art form. Lu Yu, often called the \"Sage of Tea,\" wrote the first known monograph on the subject, the Cha Jing (Classic of Tea), which documented methods of cultivation, preparation, and appreciation. His work elevated tea from a simple health drink to a cultural institution, influencing generations of scholars, monks, and merchants.\n\nAs overland and maritime trade routes expanded during the Song and Ming dynasties, tea moved beyond China's borders. It reached Japan in the ninth century, where it became central to Zen Buddhist practice and eventually developed into the highly formalized Japanese tea ceremony. By the sixteenth century, Portuguese and Dutch traders had brought tea to Europe, where it quickly became a symbol of refinement, social status, and commercial power.\n\nIn Britain, tea consumption grew rapidly during the seventeenth and eighteenth centuries, driven partly by the efforts of Catherine of Braganza, the Portuguese-born queen of Charles II, who made tea fashionable at court. The British East India Company recognized the enormous profit potential and began importing large quantities from China. However, the resulting trade imbalance — Britain bought far more tea than China wanted in return — contributed to tensions that eventually led to the Opium Wars of the mid-nineteenth century.\n\nTo reduce dependence on Chinese supplies, the British established tea plantations in India, particularly in Assam and Darjeeling, during the 1830s and 1840s. Scottish botanist Robert Fortune played a key role by secretly transporting tea plants and manufacturing knowledge from China to India. These Indian plantations eventually became among the world's largest producers, fundamentally altering the global tea trade.\n\nToday, tea is the most widely consumed beverage in the world after water. Global production exceeds six million tonnes annually, with China, India, Kenya, and Sri Lanka leading output. Modern research has also renewed interest in the health benefits of tea, with studies linking regular consumption to reduced risks of cardiovascular disease, certain cancers, and cognitive decline.",
       "questionGroups": [
         {
           "type": "true-false-not-given",
-          "instruction": "Questions 1-3. Do the following statements agree with the information given in the passage?",
+          "instruction": "Questions 1–7: Do the following statements agree with the information given in Reading Passage 1? Write TRUE if the statement agrees with the information, FALSE if the statement contradicts the information, or NOT GIVEN if there is no information on this.",
           "questions": [
             {
               "number": 1,
-              "text": "Tea was first described in accounts from China.",
-              "answer": "TRUE"
+              "text": "Emperor Shen Nung intentionally created the first cup of tea.",
+              "answer": "FALSE",
+              "explanation": "The passage states he discovered tea 'by accident after leaves blew into his pot of boiling water,' meaning it was not intentional."
             },
             {
               "number": 2,
-              "text": "Tea became popular in Europe before it spread across Asia.",
-              "answer": "FALSE"
+              "text": "Ancient texts mention that tea was used to treat tiredness.",
+              "answer": "TRUE",
+              "explanation": "The passage says 'ancient texts describe it as a remedy for fatigue,' and fatigue is another word for tiredness."
             },
             {
               "number": 3,
-              "text": "Tea farmers in China were required to pay a special tax.",
-              "answer": "NOT GIVEN"
+              "text": "Lu Yu's Cha Jing was the world's best-selling book about tea.",
+              "answer": "NOT GIVEN",
+              "explanation": "The passage calls it 'the first known monograph on the subject' but does not mention sales figures or whether it was best-selling."
+            },
+            {
+              "number": 4,
+              "text": "Tea arrived in Japan before it reached Europe.",
+              "answer": "TRUE",
+              "explanation": "The passage states tea reached Japan 'in the ninth century' and was brought to Europe 'by the sixteenth century,' confirming Japan came first."
+            },
+            {
+              "number": 5,
+              "text": "Catherine of Braganza was originally from Spain.",
+              "answer": "FALSE",
+              "explanation": "The passage describes her as 'the Portuguese-born queen of Charles II,' indicating she was from Portugal, not Spain."
+            },
+            {
+              "number": 6,
+              "text": "The trade imbalance between Britain and China was partly responsible for the Opium Wars.",
+              "answer": "TRUE",
+              "explanation": "The passage directly states the trade imbalance 'contributed to tensions that eventually led to the Opium Wars.'"
+            },
+            {
+              "number": 7,
+              "text": "Robert Fortune was employed by the British East India Company.",
+              "answer": "NOT GIVEN",
+              "explanation": "The passage mentions Robert Fortune's role but does not specify who employed him — only that he was a Scottish botanist."
             }
           ]
         },
         {
-          "type": "matching-headings",
-          "instruction": "Questions 4-5. Choose the correct heading for each part of the passage.",
-          "options": [
+          "type": "sentence-completion",
+          "instruction": "Questions 8–13: Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          "questions": [
             {
-              "key": "i",
-              "text": "A drink becomes part of wider culture"
+              "number": 8,
+              "text": "Lu Yu is frequently referred to as the ______ of Tea.",
+              "answer": "Sage",
+              "acceptedAnswers": ["Sage", "sage"],
+              "explanation": "The passage states: 'Lu Yu, often called the \"Sage of Tea.\"'"
             },
             {
-              "key": "ii",
-              "text": "Modern scientific farming methods"
+              "number": 9,
+              "text": "In Japan, tea became closely connected to ______ Buddhist practice.",
+              "answer": "Zen",
+              "acceptedAnswers": ["Zen", "zen"],
+              "explanation": "The passage says tea 'became central to Zen Buddhist practice' in Japan."
             },
             {
-              "key": "iii",
-              "text": "Early records of tea drinking"
+              "number": 10,
+              "text": "Catherine of Braganza helped make tea ______ at the British royal court.",
+              "answer": "fashionable",
+              "acceptedAnswers": ["fashionable"],
+              "explanation": "The passage states she 'made tea fashionable at court.'"
+            },
+            {
+              "number": 11,
+              "text": "The British set up tea plantations in Assam and ______ in India.",
+              "answer": "Darjeeling",
+              "acceptedAnswers": ["Darjeeling", "darjeeling"],
+              "explanation": "The passage mentions plantations 'in Assam and Darjeeling.'"
+            },
+            {
+              "number": 12,
+              "text": "Robert Fortune secretly moved tea plants and manufacturing ______ from China.",
+              "answer": "knowledge",
+              "acceptedAnswers": ["knowledge"],
+              "explanation": "The passage says he was 'secretly transporting tea plants and manufacturing knowledge from China to India.'"
+            },
+            {
+              "number": 13,
+              "text": "Worldwide tea production now exceeds six million ______ per year.",
+              "answer": "tonnes",
+              "acceptedAnswers": ["tonnes"],
+              "explanation": "The passage states 'Global production exceeds six million tonnes annually.'"
             }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Urban Green Spaces and Public Health",
+      "content": "A growing body of research indicates that urban green spaces — parks, community gardens, tree-lined streets, and other forms of urban vegetation — deliver significant benefits to public health. As cities worldwide continue to expand and populations become increasingly urbanised, understanding these benefits has become a priority for urban planners, policymakers, and public health professionals.\n\nOne of the most well-documented advantages of green spaces is their positive effect on mental health. Studies conducted across multiple countries have found that people who live near parks and gardens report lower levels of stress, anxiety, and depression compared to those in areas with little greenery. Researchers believe this is partly because natural environments encourage physical relaxation and reduce the production of cortisol, a hormone associated with stress. The Japanese practice of shinrin-yoku, or \"forest bathing,\" has attracted particular attention for its measurable effects on mood and blood pressure.\n\nBeyond mental health, green spaces contribute to physical well-being by encouraging outdoor exercise. Access to parks has been linked to higher rates of walking, jogging, and cycling, which in turn reduce the risk of obesity, type 2 diabetes, and cardiovascular disease. A 2019 study published in The Lancet Planetary Health found that people with access to green spaces within 300 metres of their home were 20 percent more likely to meet recommended physical activity levels.\n\nUrban vegetation also plays a critical role in mitigating the urban heat island effect, a phenomenon in which built-up areas experience significantly higher temperatures than surrounding rural regions. Trees and plants cool the air through evapotranspiration and provide shade that reduces surface temperatures. During heatwaves, neighbourhoods with mature tree canopy have been recorded as being up to 8°C cooler than nearby treeless districts, a difference that can be lifesaving for vulnerable populations such as the elderly.\n\nAir quality is another area in which urban green spaces make a measurable contribution. Trees absorb pollutants including nitrogen dioxide, sulphur dioxide, and particulate matter, while simultaneously releasing oxygen. While urban trees cannot single-handedly solve air pollution, research suggests that strategically placed green infrastructure — such as hedgerows along busy roads — can reduce roadside concentrations of certain pollutants by up to 60 percent.\n\nDespite these benefits, access to quality green space is unevenly distributed. Numerous studies have shown that lower-income and minority communities are far less likely to have parks within walking distance. This disparity has led some researchers to describe unequal green space distribution as an environmental justice issue. Cities such as Barcelona, Singapore, and Melbourne have responded by launching ambitious urban greening programmes that prioritise underserved neighbourhoods.\n\nThe economic case for urban green space is also compelling. Property values near well-maintained parks tend to be higher, local businesses benefit from increased foot traffic, and cities save on healthcare costs when residents are healthier. A comprehensive cost-benefit analysis conducted for New York City estimated that its urban forest provides approximately $120 million in annual environmental and health benefits.",
+      "questionGroups": [
+        {
+          "type": "matching-headings",
+          "instruction": "Questions 14–20: The reading passage has seven paragraphs, A–G. Choose the correct heading for each paragraph from the list of headings below.",
+          "options": [
+            { "key": "i", "text": "Economic returns from investing in green areas" },
+            { "key": "ii", "text": "How green spaces encourage physical activity" },
+            { "key": "iii", "text": "The growing importance of urban greenery research" },
+            { "key": "iv", "text": "Unequal access to parks and its consequences" },
+            { "key": "v", "text": "Green spaces and their impact on temperature" },
+            { "key": "vi", "text": "The role of vegetation in improving air quality" },
+            { "key": "vii", "text": "Psychological benefits of living near nature" },
+            { "key": "viii", "text": "Government policies on rural land management" },
+            { "key": "ix", "text": "The historical origins of urban parks" }
           ],
           "questions": [
             {
-              "number": 4,
-              "paragraph": "Early accounts",
-              "answer": "iii"
+              "number": 14,
+              "paragraph": "Paragraph A",
+              "answer": "iii",
+              "explanation": "Paragraph A introduces the topic by stating that understanding green space benefits 'has become a priority for urban planners, policymakers, and public health professionals.'"
             },
             {
-              "number": 5,
-              "paragraph": "Trade and Europe",
-              "answer": "i"
+              "number": 15,
+              "paragraph": "Paragraph B",
+              "answer": "vii",
+              "explanation": "Paragraph B discusses how people near parks 'report lower levels of stress, anxiety, and depression' — these are psychological/mental health benefits."
+            },
+            {
+              "number": 16,
+              "paragraph": "Paragraph C",
+              "answer": "ii",
+              "explanation": "Paragraph C focuses on how parks encourage 'walking, jogging, and cycling' and links this to physical health outcomes."
+            },
+            {
+              "number": 17,
+              "paragraph": "Paragraph D",
+              "answer": "v",
+              "explanation": "Paragraph D discusses the 'urban heat island effect' and how trees 'cool the air through evapotranspiration.'"
+            },
+            {
+              "number": 18,
+              "paragraph": "Paragraph E",
+              "answer": "vi",
+              "explanation": "Paragraph E describes how trees 'absorb pollutants' and can 'reduce roadside concentrations of certain pollutants.'"
+            },
+            {
+              "number": 19,
+              "paragraph": "Paragraph F",
+              "answer": "iv",
+              "explanation": "Paragraph F discusses how 'lower-income and minority communities are far less likely to have parks' and calls it 'an environmental justice issue.'"
+            },
+            {
+              "number": 20,
+              "paragraph": "Paragraph G",
+              "answer": "i",
+              "explanation": "Paragraph G covers the economic benefits: higher property values, increased foot traffic, healthcare savings, and the $120 million NYC estimate."
+            }
+          ]
+        },
+        {
+          "type": "multiple-choice",
+          "instruction": "Questions 21–24: Choose the correct letter, A, B, C, or D.",
+          "questions": [
+            {
+              "number": 21,
+              "text": "What does the Japanese practice of shinrin-yoku involve?",
+              "options": [
+                { "key": "A", "text": "Growing medicinal herbs in urban gardens" },
+                { "key": "B", "text": "Spending time in forest environments" },
+                { "key": "C", "text": "Practising martial arts in parks" },
+                { "key": "D", "text": "Planting trees along city streets" }
+              ],
+              "answer": "B",
+              "explanation": "The passage describes shinrin-yoku as 'forest bathing,' which refers to spending time immersed in forest environments for health benefits."
+            },
+            {
+              "number": 22,
+              "text": "According to the 2019 Lancet study, people living near green spaces were",
+              "options": [
+                { "key": "A", "text": "20% less likely to develop cardiovascular disease" },
+                { "key": "B", "text": "20% more likely to meet physical activity recommendations" },
+                { "key": "C", "text": "30% more likely to cycle to work" },
+                { "key": "D", "text": "30% less likely to be overweight" }
+              ],
+              "answer": "B",
+              "explanation": "The passage states they were '20 percent more likely to meet recommended physical activity levels.'"
+            },
+            {
+              "number": 23,
+              "text": "The urban heat island effect refers to",
+              "options": [
+                { "key": "A", "text": "the warming of rural areas due to deforestation" },
+                { "key": "B", "text": "higher temperatures in cities compared to rural surroundings" },
+                { "key": "C", "text": "increased rainfall in urban areas" },
+                { "key": "D", "text": "rising sea levels affecting coastal cities" }
+              ],
+              "answer": "B",
+              "explanation": "The passage defines it as 'a phenomenon in which built-up areas experience significantly higher temperatures than surrounding rural regions.'"
+            },
+            {
+              "number": 24,
+              "text": "What does the passage suggest about hedgerows along roads?",
+              "options": [
+                { "key": "A", "text": "They completely eliminate air pollution" },
+                { "key": "B", "text": "They are too expensive to maintain" },
+                { "key": "C", "text": "They can significantly reduce certain pollutant levels" },
+                { "key": "D", "text": "They block natural wind patterns" }
+              ],
+              "answer": "C",
+              "explanation": "The passage says 'strategically placed green infrastructure — such as hedgerows along busy roads — can reduce roadside concentrations of certain pollutants by up to 60 percent.'"
+            }
+          ]
+        },
+        {
+          "type": "summary-completion",
+          "instruction": "Questions 25–27: Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          "questions": [
+            {
+              "number": 25,
+              "text": "Natural environments help the body relax and lower the production of a stress-related hormone called ______.",
+              "answer": "cortisol",
+              "acceptedAnswers": ["cortisol"],
+              "explanation": "The passage identifies 'cortisol, a hormone associated with stress.'"
+            },
+            {
+              "number": 26,
+              "text": "Trees cool the air through a natural process known as ______.",
+              "answer": "evapotranspiration",
+              "acceptedAnswers": ["evapotranspiration"],
+              "explanation": "The passage states trees 'cool the air through evapotranspiration.'"
+            },
+            {
+              "number": 27,
+              "text": "Some researchers view unequal green space access as an issue of environmental ______.",
+              "answer": "justice",
+              "acceptedAnswers": ["justice"],
+              "explanation": "The passage calls it 'an environmental justice issue.'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Artificial Intelligence and the Future of Work",
+      "content": "The rapid development of artificial intelligence (AI) has triggered intense debate about its impact on employment. While some commentators predict catastrophic job losses, others argue that AI will ultimately create more jobs than it destroys — much as previous waves of technological change did during the Industrial Revolution and the rise of personal computing.\n\nAt the heart of the discussion is a distinction between task automation and job automation. Most occupations consist of a bundle of tasks, only some of which can currently be performed by machines. A radiologist, for example, may use AI to analyse medical images more efficiently, but still needs human judgement for complex diagnoses, patient communication, and ethical decision-making. Studies by the Organisation for Economic Co-operation and Development (OECD) suggest that roughly 14 percent of jobs in developed economies are at high risk of full automation, while a further 32 percent could see significant changes in how they are performed.\n\nThe types of work most vulnerable to AI-driven automation tend to involve routine, repetitive tasks that follow predictable rules. Data entry, basic accounting, assembly-line manufacturing, and certain customer service functions are frequently cited examples. Conversely, jobs that require creativity, emotional intelligence, complex problem-solving, or fine motor skills in unpredictable environments remain difficult for current AI systems to replicate.\n\nHistory suggests that technological disruption, while painful in the short term, tends to generate new categories of employment that were previously unimaginable. The rise of the internet, for instance, gave birth to entirely new industries — social media management, app development, digital marketing, cybersecurity — that now employ millions worldwide. Similarly, AI is expected to create demand for roles such as AI ethics consultants, machine learning engineers, data annotation specialists, and human-AI collaboration designers.\n\nHowever, the transition is unlikely to be smooth. Workers in displaced roles often lack the skills needed for emerging positions, creating a significant skills gap. Education systems, which were largely designed for the industrial age, are struggling to keep pace with the speed of technological change. Several countries have begun experimenting with new approaches, including lifelong learning accounts, micro-credential programmes, and partnerships between universities and technology companies to develop more relevant curricula.\n\nThe geographic distribution of AI's impact is also uneven. Advanced economies with strong digital infrastructure and well-funded education systems are generally better positioned to adapt, while developing nations risk being left behind if they cannot invest in reskilling at sufficient scale. Within countries, rural areas and smaller cities may face greater challenges than major urban centres, where new tech-sector jobs tend to concentrate.\n\nGovernments worldwide are grappling with how to manage the transition. Policy responses range from investing in STEM education and vocational retraining to exploring more radical ideas such as universal basic income (UBI). Finland conducted a two-year UBI pilot between 2017 and 2018, providing 2,000 unemployed citizens with a monthly payment of €560 regardless of other income. While the trial showed improvements in well-being and modest increases in employment, policymakers remain divided on whether UBI is scalable or fiscally sustainable.\n\nPerhaps the most important insight from current research is that the future of work will not be defined solely by technology, but by the choices societies make about education, regulation, and social safety nets. Countries that invest proactively in their workforce are far more likely to harness AI as a tool for shared prosperity than those that leave adaptation to market forces alone.",
+      "questionGroups": [
+        {
+          "type": "yes-no-not-given",
+          "instruction": "Questions 28–33: Do the following statements agree with the views of the writer in Reading Passage 3? Write YES if the statement agrees with the views of the writer, NO if the statement contradicts the views of the writer, or NOT GIVEN if it is impossible to say what the writer thinks.",
+          "questions": [
+            {
+              "number": 28,
+              "text": "AI will inevitably destroy more jobs than it creates.",
+              "answer": "NOT GIVEN",
+              "explanation": "The passage presents both views ('some commentators predict catastrophic job losses, others argue that AI will ultimately create more jobs') without the writer taking a definitive side on this specific claim."
+            },
+            {
+              "number": 29,
+              "text": "Most jobs consist of multiple tasks rather than a single task.",
+              "answer": "YES",
+              "explanation": "The writer states 'Most occupations consist of a bundle of tasks,' directly supporting this claim."
+            },
+            {
+              "number": 30,
+              "text": "Current education systems are adequately preparing workers for AI-related changes.",
+              "answer": "NO",
+              "explanation": "The writer says 'Education systems, which were largely designed for the industrial age, are struggling to keep pace,' indicating they are NOT adequate."
+            },
+            {
+              "number": 31,
+              "text": "Developing nations have already closed the digital skills gap with advanced economies.",
+              "answer": "NO",
+              "explanation": "The passage says developing nations 'risk being left behind if they cannot invest in reskilling,' implying the gap remains open."
+            },
+            {
+              "number": 32,
+              "text": "The Finnish UBI trial ran for three years.",
+              "answer": "NO",
+              "explanation": "The passage specifically states it was 'a two-year UBI pilot between 2017 and 2018,' not three years."
+            },
+            {
+              "number": 33,
+              "text": "Proactive investment in workforce development will help countries benefit from AI.",
+              "answer": "YES",
+              "explanation": "The final paragraph states 'Countries that invest proactively in their workforce are far more likely to harness AI as a tool for shared prosperity.'"
+            }
+          ]
+        },
+        {
+          "type": "matching-information",
+          "instruction": "Questions 34–37: The passage has eight paragraphs. Which paragraph contains the following information? You may use any letter more than once.",
+          "options": [
+            { "key": "A", "text": "Paragraph 1" },
+            { "key": "B", "text": "Paragraph 2" },
+            { "key": "C", "text": "Paragraph 3" },
+            { "key": "D", "text": "Paragraph 4" },
+            { "key": "E", "text": "Paragraph 5" },
+            { "key": "F", "text": "Paragraph 6" },
+            { "key": "G", "text": "Paragraph 7" },
+            { "key": "H", "text": "Paragraph 8" }
+          ],
+          "questions": [
+            {
+              "number": 34,
+              "text": "A specific example of a government experiment with financial support for citizens",
+              "answer": "G",
+              "explanation": "Paragraph G (paragraph 7) describes Finland's UBI pilot that provided €560 monthly to 2,000 unemployed citizens."
+            },
+            {
+              "number": 35,
+              "text": "Examples of entirely new job categories created by earlier technology",
+              "answer": "D",
+              "explanation": "Paragraph D (paragraph 4) lists 'social media management, app development, digital marketing, cybersecurity' as new industries born from the internet."
+            },
+            {
+              "number": 36,
+              "text": "A comparison of AI's impact between different types of geographic locations within countries",
+              "answer": "F",
+              "explanation": "Paragraph F (paragraph 6) compares 'rural areas and smaller cities' with 'major urban centres.'"
+            },
+            {
+              "number": 37,
+              "text": "Statistical estimates of how many jobs face high automation risk",
+              "answer": "B",
+              "explanation": "Paragraph B (paragraph 2) cites OECD data: 'roughly 14 percent of jobs in developed economies are at high risk of full automation.'"
+            }
+          ]
+        },
+        {
+          "type": "short-answer",
+          "instruction": "Questions 38–40: Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          "questions": [
+            {
+              "number": 38,
+              "text": "What type of tasks are most at risk of being automated by AI?",
+              "answer": "routine, repetitive tasks",
+              "acceptedAnswers": ["routine, repetitive tasks", "routine repetitive tasks", "routine repetitive"],
+              "explanation": "The passage states 'The types of work most vulnerable to AI-driven automation tend to involve routine, repetitive tasks.'"
+            },
+            {
+              "number": 39,
+              "text": "What gap is created when displaced workers cannot fill new roles?",
+              "answer": "skills gap",
+              "acceptedAnswers": ["skills gap", "a skills gap", "significant skills gap", "a significant skills gap"],
+              "explanation": "The passage says workers 'lack the skills needed for emerging positions, creating a significant skills gap.'"
+            },
+            {
+              "number": 40,
+              "text": "How much was paid monthly to participants in Finland's UBI trial?",
+              "answer": "€560",
+              "acceptedAnswers": ["€560", "560 euros", "560"],
+              "explanation": "The passage specifies 'a monthly payment of €560.'"
             }
           ]
         }

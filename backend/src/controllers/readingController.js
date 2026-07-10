@@ -132,7 +132,23 @@ function flattenQuestions(test) {
   });
 }
 
-function toAttemptResponse(attempt) {
+function buildExplanationMap(test) {
+  const map = {};
+
+  for (const passage of test.passages) {
+    for (const group of passage.questionGroups) {
+      for (const question of group.questions) {
+        if (question.explanation) {
+          map[question.number] = question.explanation;
+        }
+      }
+    }
+  }
+
+  return map;
+}
+
+function toAttemptResponse(attempt, explanationMap = {}) {
   return {
     id: attempt._id,
     testSlug: attempt.testSlug,
@@ -147,7 +163,21 @@ function toAttemptResponse(attempt) {
       value: answer.value,
       correctAnswer: answer.correctAnswer,
       isCorrect: answer.isCorrect,
+      explanation: explanationMap[answer.number] || null,
     })),
+  };
+}
+
+function toAttemptSummary(attempt) {
+  return {
+    id: attempt._id,
+    testSlug: attempt.testSlug,
+    testTitle: attempt.testTitle,
+    correctAnswers: attempt.correctAnswers,
+    questionCount: attempt.questionCount,
+    bandScore: attempt.bandScore,
+    timeSpentSeconds: attempt.timeSpentSeconds,
+    submittedAt: attempt.submittedAt,
   };
 }
 
@@ -220,7 +250,9 @@ export const submitReadingAttempt = async (req, res) => {
       timeSpentSeconds,
     });
 
-    return res.status(201).json({ attempt: toAttemptResponse(attempt) });
+    const explanationMap = buildExplanationMap(test);
+
+    return res.status(201).json({ attempt: toAttemptResponse(attempt, explanationMap) });
   } catch (error) {
     console.error("Error submitting reading attempt:", error);
     return res.status(500).json({ message: "Failed to submit reading attempt" });
@@ -242,7 +274,10 @@ export const getReadingAttempt = async (req, res) => {
       return res.status(404).json({ message: "Reading attempt not found" });
     }
 
-    return res.status(200).json({ attempt: toAttemptResponse(attempt) });
+    const test = await ReadingTest.findById(attempt.readingTestId).lean();
+    const explanationMap = test ? buildExplanationMap(test) : {};
+
+    return res.status(200).json({ attempt: toAttemptResponse(attempt, explanationMap) });
   } catch (error) {
     console.error("Error loading reading attempt:", error);
     return res.status(500).json({ message: "Failed to load reading attempt" });
@@ -265,5 +300,21 @@ export const getReadingTest = async (req, res) => {
   } catch (error) {
     console.error("Error loading reading test:", error);
     return res.status(500).json({ message: "Failed to load reading test" });
+  }
+};
+
+export const listUserAttempts = async (req, res) => {
+  try {
+    const limit = Math.min(Math.max(Number(req.query.limit) || 20, 1), 50);
+
+    const attempts = await ReadingAttempt.find({ userId: req.user._id })
+      .sort({ submittedAt: -1 })
+      .limit(limit)
+      .lean();
+
+    return res.status(200).json({ attempts: attempts.map(toAttemptSummary) });
+  } catch (error) {
+    console.error("Error listing user attempts:", error);
+    return res.status(500).json({ message: "Failed to load attempt history" });
   }
 };

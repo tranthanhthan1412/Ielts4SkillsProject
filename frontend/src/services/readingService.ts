@@ -57,12 +57,24 @@ export type ReadingAnswerPayload = {
 
 export type ReadingAttemptAnswer = ReadingAnswerPayload & {
   correctAnswer: string | string[]
+  explanation?: string | null
   isCorrect: boolean
 }
 
 export type ReadingAttempt = {
   id: string
   answers: ReadingAttemptAnswer[]
+  bandScore: number
+  correctAnswers: number
+  questionCount: number
+  submittedAt: string
+  testSlug: string
+  testTitle: string
+  timeSpentSeconds?: number
+}
+
+export type ReadingAttemptSummary = {
+  id: string
   bandScore: number
   correctAnswers: number
   questionCount: number
@@ -82,6 +94,10 @@ type ReadingTestResponse = {
 
 type ReadingAttemptResponse = {
   attempt: ReadingAttempt
+}
+
+type ReadingAttemptListResponse = {
+  attempts: ReadingAttemptSummary[]
 }
 
 export async function listReadingTests(): Promise<ReadingTestSummary[]> {
@@ -119,4 +135,13 @@ export async function getReadingAttempt(attemptId: string, token: string) {
     token,
   )
   return attempt
+}
+
+export async function listUserAttempts(token: string): Promise<ReadingAttemptSummary[]> {
+  const { attempts } = await apiRequest<ReadingAttemptListResponse>(
+    '/reading/attempts',
+    {},
+    token,
+  )
+  return attempts
 }

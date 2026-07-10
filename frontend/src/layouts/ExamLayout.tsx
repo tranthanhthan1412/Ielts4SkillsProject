@@ -7,6 +7,7 @@ import ProgressBar from '../components/exam/ProgressBar'
 type ExamLayoutProps = {
   children: ReactNode
   durationSeconds?: number
+  onTimeUp?: () => void
   progress?: number
   skill: string
   title: string
@@ -15,6 +16,7 @@ type ExamLayoutProps = {
 function ExamLayout({
   children,
   durationSeconds = 3600,
+  onTimeUp,
   progress = 0,
   skill,
   title,
@@ -30,7 +32,7 @@ function ExamLayout({
           <span>{skill}</span>
           <strong>{title}</strong>
         </div>
-        <ExamTimer initialSeconds={durationSeconds} />
+        <ExamTimer initialSeconds={durationSeconds} onTimeUp={onTimeUp} />
       </header>
 
       <ProgressBar label="Tiến độ bài làm" value={progress} />
